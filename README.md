@@ -29,16 +29,16 @@ One or more computers excute a program (`listen.py`) that listen on the local ne
 
 ### Wireless network and SSH
 
-Before configuring the broadcast service, follow the instruction for a [headless Raspbery Pi setup](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md) from the official Raspberry Pi documentation to configure the wireless network access and enable SSH. In the case where the Raspberry Pi is to be connected to an ethernet cable, skip the wireless network configuration but ensure so enable SSH.
+Before configuring the broadcast service, follow the instruction for a [headless Raspbery Pi setup](https://www.raspberrypi.org/documentation/configuration/wireless/headless.md) from the official Raspberry Pi documentation to configure the wireless network access and enable SSH. In the case where the Raspberry Pi is to be connected to an ethernet cable, skip the wireless network configuration but ensure to enable SSH.
 
 ### Broadcasting Python script
 
-Once the wireless network configuration is completed and SSH is enabled, open a terminal to root of the `rootfs` partition of the SD card to configure the broadcasting service (usually mounted at `/media/user/rootfs` on most Linux system).
+Once the wireless network configuration is completed and SSH is enabled, open a terminal to root of the `rootfs` partition of the SD card to configure the broadcasting service. All paths in this section are relative to the root of the `rootfs` partition (usually mounted at `/media/user/rootfs` on most Linux system).
 
 Download the broadcasting Python script in the `/home/pi/` folder (replace `pi` in `home/pi/` by the appropriate username if different than `pi`):
 
 ```
-$ wget https://github.com/DrGFreeman/pi-ip-broadcast/raw/master/broadcast.py -O home/pi/
+$ wget https://github.com/DrGFreeman/pi-ip-broadcast/raw/master/broadcast.py -O home/pi/broadcast.py
 ```
 
 Edit the `info` string near the top of the `broadcast.py` file. This string will print next to the Raspberry Pi's IP address and hostname on the listening computer. It can be useful to distinguish one Raspberry Pi from another if multiple Raspberry Pis on the network have the same hostname.
@@ -101,10 +101,10 @@ WantedBy=multi-user.target
 
 ## Listening Computer
 
-The listening computer can be any computer connected to the same local network at the Raspberry Pi(s).
+The listening computer can be any computer connected to the same local network at the Raspberry Pi.
 
 Notes:
-1. The instructions below reflect a Linux computer where Python version 3 is accessed with the `python3` command. On a system where the `python` command launches Python 3, use the `python` command where the instructions indicate `python3`.
+1. The instructions below are for a Linux computer where Python version 3 is accessed with the `python3` command. On a system where the `python` command launches Python 3, use the `python` command where the instructions indicate `python3`.
 1. If the `pip` module is not found, it may need to be installed with `sudo apt update && sudo apt install python3-pip`.
 
 Install the *Flask* Python web server:
@@ -144,7 +144,7 @@ Broadcasted IPs - Last update: 2020-02-23 23:08:04
 -------------------------------------------------------------------------------
 ```
 
-If no broadcast is received from a specific IP address in a 150 seconds interval, the IP address will be removed from the list at the next refresh.
+If no broadcast is received from a specific IP address within a 150 seconds interval, the IP address will be removed from the list at the next refresh.
 
 # Remote access to the Raspberry Pi
 Once the IP address of a Raspberry Pi is known, this Raspberry Pi can be accessed remotely using different protocols. Refer to the [Remote Access](https://www.raspberrypi.org/documentation/remote-access/) section of the official Raspberry Pi documentation to learn more about the different ways of accessing a Raspberry Pi remotely.
