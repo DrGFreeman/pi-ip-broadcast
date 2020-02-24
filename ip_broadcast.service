@@ -1,0 +1,13 @@
+[Unit]
+Description=IP address broadcast service
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+ExecStart=/usr/bin/python3 /home/pi/broadcast.py
+
+[Install]
+WantedBy=multi-user.target
