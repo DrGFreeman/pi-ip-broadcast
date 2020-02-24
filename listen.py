@@ -1,9 +1,8 @@
 import os
-import secrets
 
 from datetime import datetime
 
-from flask import Flask, request, session
+from flask import Flask, request
 
 # This port number must match the one in broadcast.py on the clients.
 port = 5000
@@ -54,4 +53,4 @@ def listen():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port)
